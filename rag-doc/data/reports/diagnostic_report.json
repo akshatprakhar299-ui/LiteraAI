@@ -1,0 +1,204 @@
+{
+  "project": "RAG Doctor",
+  "evaluation_source": "sample.pdf",
+  "retrieval_method": "FAISS + BM25 + RRF",
+  "top_k": 3,
+  "total_test_cases": 5,
+  "answerable_cases": 4,
+  "unanswerable_cases": 1,
+  "metrics": {
+    "hit_rate_at_3": 1.0,
+    "mean_evidence_page_recall_at_3": 0.75
+  },
+  "diagnostic_results": [
+    {
+      "question": "What are the four steps of the improvement process?",
+      "type": "answerable",
+      "expected_pages": [
+        4,
+        5
+      ],
+      "retrieved_pages": [
+        2,
+        4,
+        9
+      ],
+      "found_pages": [
+        4
+      ],
+      "missed_pages": [
+        5
+      ],
+      "hit": true,
+      "recall": 0.5,
+      "status": "partial",
+      "diagnosis": "Some expected evidence pages were missed.",
+      "retrieved_chunks": [
+        {
+          "source": "sample.pdf",
+          "page": 4,
+          "chunk": 1,
+          "rrf_score": 0.032266
+        },
+        {
+          "source": "sample.pdf",
+          "page": 9,
+          "chunk": 1,
+          "rrf_score": 0.032266
+        },
+        {
+          "source": "sample.pdf",
+          "page": 2,
+          "chunk": 1,
+          "rrf_score": 0.031754
+        }
+      ]
+    },
+    {
+      "question": "What are the six stages of the repeating pattern?",
+      "type": "answerable",
+      "expected_pages": [
+        4
+      ],
+      "retrieved_pages": [
+        4,
+        5,
+        7
+      ],
+      "found_pages": [
+        4
+      ],
+      "missed_pages": [],
+      "hit": true,
+      "recall": 1.0,
+      "status": "excellent",
+      "diagnosis": "All expected evidence pages were retrieved.",
+      "retrieved_chunks": [
+        {
+          "source": "sample.pdf",
+          "page": 4,
+          "chunk": 1,
+          "rrf_score": 0.032787
+        },
+        {
+          "source": "sample.pdf",
+          "page": 5,
+          "chunk": 1,
+          "rrf_score": 0.032002
+        },
+        {
+          "source": "sample.pdf",
+          "page": 7,
+          "chunk": 1,
+          "rrf_score": 0.031025
+        }
+      ]
+    },
+    {
+      "question": "How does feedback help improve ChatGPT?",
+      "type": "answerable",
+      "expected_pages": [
+        2,
+        9
+      ],
+      "retrieved_pages": [
+        1,
+        4,
+        9
+      ],
+      "found_pages": [
+        9
+      ],
+      "missed_pages": [
+        2
+      ],
+      "hit": true,
+      "recall": 0.5,
+      "status": "partial",
+      "diagnosis": "Some expected evidence pages were missed.",
+      "retrieved_chunks": [
+        {
+          "source": "sample.pdf",
+          "page": 1,
+          "chunk": 1,
+          "rrf_score": 0.031778
+        },
+        {
+          "source": "sample.pdf",
+          "page": 9,
+          "chunk": 1,
+          "rrf_score": 0.031754
+        },
+        {
+          "source": "sample.pdf",
+          "page": 4,
+          "chunk": 1,
+          "rrf_score": 0.031545
+        }
+      ]
+    },
+    {
+      "question": "What is the purpose of testing an improvement?",
+      "type": "answerable",
+      "expected_pages": [
+        4,
+        5
+      ],
+      "retrieved_pages": [
+        4,
+        5,
+        9
+      ],
+      "found_pages": [
+        4,
+        5
+      ],
+      "missed_pages": [],
+      "hit": true,
+      "recall": 1.0,
+      "status": "excellent",
+      "diagnosis": "All expected evidence pages were retrieved.",
+      "retrieved_chunks": [
+        {
+          "source": "sample.pdf",
+          "page": 5,
+          "chunk": 1,
+          "rrf_score": 0.032258
+        },
+        {
+          "source": "sample.pdf",
+          "page": 9,
+          "chunk": 1,
+          "rrf_score": 0.031778
+        },
+        {
+          "source": "sample.pdf",
+          "page": 4,
+          "chunk": 1,
+          "rrf_score": 0.031319
+        }
+      ]
+    },
+    {
+      "question": "What exact internal software does OpenAI use to manage its Agile sprints?",
+      "type": "unanswerable",
+      "retrieved_pages": [
+        5,
+        7,
+        9
+      ],
+      "status": "not_evaluated",
+      "diagnosis": "Retrieval metrics cannot determine whether the generated answer correctly abstains. Answer-level abstention testing is required."
+    }
+  ],
+  "recommendations": [
+    "Some relevant pages are missing. Consider increasing retrieval depth and testing different chunk sizes.",
+    "Expand the evaluation dataset. A small number of test questions cannot reliably establish general retrieval quality.",
+    "Tune retrieval parameters only after comparing results on a separate validation dataset."
+  ],
+  "limitations": [
+    "Metrics use page-level relevance labels.",
+    "Unanswerable questions are not yet tested for answer-level abstention.",
+    "Citation correctness and factual support are not evaluated by this module."
+  ]
+}

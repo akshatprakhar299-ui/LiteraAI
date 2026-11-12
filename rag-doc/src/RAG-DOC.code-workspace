@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "RAG-DOC",
+			"path": "../.."
+		},
+		{
+			"name": "LiteraAI_Frontend_ResearchLab",
+			"path": "../../../../Downloads/LiteraAI_Frontend_ResearchLab"
+		}
+	],
+	"settings": {}
+}

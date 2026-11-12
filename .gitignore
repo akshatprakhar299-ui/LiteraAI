@@ -1,0 +1,27 @@
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Generated Python files
+*.joblib
+*.pkl
+
+# Node
+node_modules/
+dist/
+build/
+
+# Local RAG data and indexes
+rag-doc/data/documents/
+rag-doc/data/indexes/
+rag-doc/data/metadata/
+
+# OS and editor
+.DS_Store
+.vscode/
